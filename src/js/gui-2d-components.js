@@ -9,7 +9,7 @@ Gui2DComponents.directive('rotative', ['$document', function($document){
 		restrict: 'E',
 		transclude: true,
 		replace: true,
-		templateUrl: "js/templates/rotative.html",
+		templateUrl: "bower_components/gui-2d-components/src/js/templates/rotative.html",
 		scope: {color: "@", min: "@", max: "@", step: "@", label: "@"},
 		controller: function($scope, $element) {
 			var content = $element;

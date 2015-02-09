@@ -15,11 +15,12 @@ grunt client
 
 Include the required bower component:
 ``` html
-<script src="bower_components/Gui2DComponents/Gui2DComponents.min.js"></script>
+<link rel="stylesheet" href="bower_components/gui-2d-components/src/css/gui-2d-components.css"/>
+<script src="bower_components/gui-2d-components/src/js/gui-2d-components.js"></script>
 ```
 
 Inject the `Gui2DComponents` module into your app:
 ``` JavaScript
-angular.module('myApp', ['Gui2DComponents']);
+angular.module('myApp', ['gui-2d-components.js']);
 ```
 
