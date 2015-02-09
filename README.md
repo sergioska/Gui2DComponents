@@ -21,6 +21,6 @@ Include the required bower component:
 
 Inject the `Gui2DComponents` module into your app:
 ``` JavaScript
-angular.module('myApp', ['gui-2d-components.js']);
+angular.module('myApp', ['Gui2DComponents.js']);
 ```
 
