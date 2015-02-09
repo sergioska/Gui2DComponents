@@ -23,8 +23,8 @@ module.exports = function(grunt) {
                     separator: '\n'
                 },
                 files: {
-                    'dist/js/Gui2DComponents.js': ['src/js/*.js'],
-                    'dist/css/Gui2DComponents.css': ['src/css/*.css']
+                    'dist/js/gui-2d-components.js': ['src/js/*.js'],
+                    'dist/css/gui-2d-components.css': ['src/css/*.css']
                 }
             }
         },
@@ -56,7 +56,7 @@ module.exports = function(grunt) {
         uglify: {
             client: {
                 files: {
-                    'dist/js/Gui2DComponents.min.js': 'dist/js/Gui2DComponents.js'
+                    'dist/js/gui-2d-components.min.js': 'dist/js/gui-2d-components.js'
                 }
             }
 
