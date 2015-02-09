@@ -1,5 +1,5 @@
 {
-  "name": "Gui2DComponents",
+  "name": "gui-2d-components",
   "version": "0.0.0",
   "authors": [
     "sicari <sergio>"
@@ -20,7 +20,7 @@
   "dependencies": {
     "jquery": "latest",
     "angular": "latest",
-    "Gui2DComponents": "latest"
+    "gui-2d-components": "latest"
   },
   "license": "MIT",
   "private": false,
