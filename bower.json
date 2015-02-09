@@ -1,0 +1,32 @@
+{
+  "name": "Gui2DComponents",
+  "version": "0.0.0",
+  "authors": [
+    "sicari <sergio>"
+  ],
+  "description": "alternative angular components for gui panel",
+  "main": "Gui2DComponents.js",
+  "moduleType": [
+    "amd"
+  ],
+  "keywords": [
+    "angularjs",
+    "javascript",
+    "gui",
+    "directive",
+    "html"
+  ],
+  "dependencies": {
+    "jquery": "latest",
+    "angular": "latest"
+  },
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
