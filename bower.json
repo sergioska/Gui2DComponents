@@ -19,10 +19,11 @@
   ],
   "dependencies": {
     "jquery": "latest",
-    "angular": "latest"
+    "angular": "latest",
+    "Gui2DComponents": "latest"
   },
   "license": "MIT",
-  "private": true,
+  "private": false,
   "ignore": [
     "**/.*",
     "node_modules",
