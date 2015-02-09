@@ -14,7 +14,8 @@
     "javascript",
     "gui",
     "directive",
-    "html"
+    "html",
+    "css3"
   ],
   "dependencies": {
     "jquery": "latest",
