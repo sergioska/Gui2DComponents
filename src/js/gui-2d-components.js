@@ -1,14 +1,9 @@
 var Gui2DComponents = angular.module('Gui2DComponents', []);
 
-Gui2DComponents.controller('Controller', function($scope) {
-
-});
-
 Gui2DComponents.directive('rotative', ['$document', function($document){
 	return {
 		require : '?ngModel',
 		restrict: 'E',
-		transclude: true,
 		replace: true,
 		templateUrl: "bower_components/gui-2d-components/src/js/templates/rotative.html",
 		scope: {color: "@", min: "@", max: "@", step: "@", label: "@", ngModel: "="},
