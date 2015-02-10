@@ -7,11 +7,19 @@ Live demo coming soon ...
 
 ## Quick start
 
+# Install via Bower
+``` sh
+bower install gui-2d-components.js --save
+```
+
+# Clone repository
+``` sh
 git clone https://github.com/sergioska/Gui2DComponents.git
 cd Gui2DComponents
 bower install
 npm install
 grunt client
+```
 
 Include the required bower component:
 ``` html
@@ -21,6 +29,12 @@ Include the required bower component:
 
 Inject the `Gui2DComponents` module into your app:
 ``` JavaScript
-angular.module('myApp', ['gui-2d-components.js']);
+angular.module('myApp', ['Gui2DComponents.js']);
+```
+
+# Using
+
+```html
+<rotative id="one" color="orange" min="0" max="10" step="0.1" label="gain"></rotative>
 ```
 
