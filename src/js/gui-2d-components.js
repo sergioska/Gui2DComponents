@@ -6,11 +6,12 @@ Gui2DComponents.controller('Controller', function($scope) {
 
 Gui2DComponents.directive('rotative', ['$document', function($document){
 	return {
+		require : '?ngModel',
 		restrict: 'E',
 		transclude: true,
 		replace: true,
 		templateUrl: "bower_components/gui-2d-components/src/js/templates/rotative.html",
-		scope: {color: "@", min: "@", max: "@", step: "@", label: "@"},
+		scope: {color: "@", min: "@", max: "@", step: "@", label: "@", ngModel: "="},
 		controller: function($scope, $element) {
 			var content = $element;
 			var pie = $element.find('pie');
@@ -28,7 +29,7 @@ Gui2DComponents.directive('rotative', ['$document', function($document){
 				});
 			};*/
 		},
-		link: function(scope, element, attr) {
+		link: function(scope, element, attr, ngModel) {
 	        var x = 0, y = 90, yReal = 0, color = 'white';
 	        var min = scope.min;
 	        var max = scope.max;
@@ -69,6 +70,7 @@ Gui2DComponents.directive('rotative', ['$document', function($document){
     				yReal = y;
     				color = 'white';
     			}
+    			ngModel.$setViewValue(yReal);
 		      	pie.css('background-image','linear-gradient('+yReal+'deg, transparent 50%, '+color+' 50%),linear-gradient(90deg, white 50%, transparent 50%');
 		    }
 
