@@ -78,3 +78,68 @@ Gui2DComponents.directive('rotative', ['$document', function($document){
 		}
 	};
 }]);
+
+Gui2DComponents.directive('selector', ['$document', function($document){
+		return {
+			require : '?ngModel',
+			restrict: 'E',
+			replace: true,
+			templateUrl: "bower_components/gui-2d-components/src/js/templates/rotative.html",
+			scope: {color: "@", label: "@", position: "@", ngModel: "="},
+			controller: function($scope, $element) {
+				var content = $element;
+				var pie = $element.find('pie');
+				content.css('color', $scope.color);
+				pie.css('background-color', $scope.color);
+				pie.css('border-color', $scope.color);
+			},
+			link: function(scope, element, attr, ngModel) {
+				var x = 0, y = 90, yReal = 0, color = 'white', value = 0;
+				function bindElementMove() {
+	                element.bind('mousedown', function (event) {
+	                    // Prevent default dragging of selected content
+	                    console.log("binding element to move.");
+	                    $document.bind('mousemove', mousemove);
+	                    $document.bind('mouseup', mouseup);
+	                });
+            	}
+
+           		bindElementMove();
+
+           		function mousemove(event) {
+           			var realStep = 360/parseInt(scope.position);
+		    		var prevY = element.attr('data-prevY');
+		    		// check max value (starting from 90deg the end is (360+90)deg then sub 5 to have a margin)
+		    		//if (y > 449) {y = 449;}
+		    		// check min value
+		    		//if (y < 99) {y = 99;}
+		    		// mouse goes down
+		    		if (event.pageY < prevY) {
+		    			y=y+10;
+		    			//value = value + parseInt(scope.step);
+   					// mouse goes up
+    				} else {
+    					y=y-10;
+    					//value = value - parseInt(scope.step);
+    				}
+    				console.log(y);	
+		      		var pie = element.find('pie');
+		      		if (y > 270) {
+    					yReal = y - 270 + 81;
+    					color = scope.color;
+    				} else {
+    					yReal = y;
+    					color = 'white';
+    				}
+		      		//ngModel.$setViewValue(value);
+		      		pie.css('background-image','linear-gradient('+yReal+'deg, transparent 50%, '+color+' 50%),linear-gradient(90deg, white 50%, transparent 50%');
+           		}
+
+           		function mouseup() {
+      				$document.off('mousemove', mousemove);
+      				$document.off('mouseup', mouseup);
+    			}
+
+			}
+		};	
+}]);
