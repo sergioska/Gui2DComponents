@@ -38,3 +38,7 @@ angular.module('myApp', ['Gui2DComponents.js']);
 <rotative id="one" color="orange" min="0" max="10" step="0.1" label="gain"></rotative>
 ```
 
+```html
+<selector id="two" color="blue" position="5" label="type"></selector>
+```
+
