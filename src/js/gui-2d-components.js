@@ -95,7 +95,7 @@ Gui2DComponents.directive('selector', ['$document', function($document){
 				pie.addClass("zeroPositionLeft");
 			},
 			link: function(scope, element, attr, ngModel) {
-				var x = 0, y = 110, yReal = 0, color = 'white', value = 0;
+				var x = 0, y = 110, yReal = 0, color = 'white', currentPosition = 0;
 				function bindElementMove() {
 	                element.bind('mousedown', function (event) {
 	                    // Prevent default dragging of selected content
@@ -113,7 +113,7 @@ Gui2DComponents.directive('selector', ['$document', function($document){
            			var lastPos = realStep*parseInt(scope.position);
 		    		var prevY = element.attr('data-prevY');
 		    		var checkPos = element.attr('data-checkPos');
-		    		var currentPosition = element.attr('data-currentPosition');
+		    		currentPosition = element.attr('data-currentPosition');
 		    		if(typeof(checkPos)==="undefined")checkPos=0;
 		    		if(typeof(currentPosition)==="undefined")currentPosition=0;
 		    		// check max value 
@@ -124,7 +124,7 @@ Gui2DComponents.directive('selector', ['$document', function($document){
 		    		if (event.pageY < prevY) {
     					checkPos=parseInt(checkPos)+10;
     					if(checkPos>(realStep-1)){
-    						currentPosition = parseInt(currentPosition) +1;
+    						currentPosition = parseInt(currentPosition) + 1;
     						y=y+realStep;
     						checkPos=0;
     					}
