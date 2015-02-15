@@ -13,16 +13,6 @@ Gui2DComponents.directive('rotative', ['$document', function($document){
 			content.css('color', $scope.color);
 			pie.css('background-color', $scope.color);
 			pie.css('border-color', $scope.color);
-			/*
-			$scope.select = function () {
-				console.log("ROTARY OK");
-				var pie = $element.find('pie');
-				pie.css('background-image','linear-gradient('+$scope.tot+'deg, transparent 50%, white 50%),linear-gradient(90deg, white 50%, transparent 50%');
-				pie.bind('mousedown', function() {
-					console.log("OK");
-					$scope.tot++;
-				});
-			};*/
 		},
 		link: function(scope, element, attr, ngModel) {
 	        var x = 0, y = 90, yReal = 0, color = 'white', value = 0;
@@ -157,6 +147,21 @@ Gui2DComponents.directive('selector', ['$document', function($document){
       				$document.off('mouseup', mouseup);
     			}
 
+
 			}
 		};	
+}]);
+
+Gui2DComponents.directive('switch', ['$document', function($document){
+		return {
+			require : '?ngModel',	
+			restrict: 'E',
+			replace: true,
+			templateUrl: "bower_components/gui-2d-components/src/js/templates/switch.html",
+			scope: {color: "@", label: "@", position: "@", ngModel: "="},
+			controller: function($scope, $element) {
+			},
+			link: function(scope, element, attr, ngModel) {
+			}
+		};
 }]);
