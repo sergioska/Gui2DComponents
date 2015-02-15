@@ -160,7 +160,22 @@ Gui2DComponents.directive('switch', ['$document', function($document){
 			templateUrl: "bower_components/gui-2d-components/src/js/templates/switch.html",
 			scope: {color: "@", label: "@", position: "@", ngModel: "="},
 			controller: function($scope, $element) {
+				$scope.status = 0;
+				$scope.init = function() {
+					$scope.switchOn = 0;
+					$scope.switchOff = 1;
+					$scope.status = 0;
+				};
 				$scope.onOff = function() {
+					if($scope.status === 0) {
+						$scope.switchOn = 1;
+						$scope.switchOff = 0;
+						$scope.status = 1;
+					} else {
+						$scope.switchOn = 0;
+						$scope.switchOff = 1;
+						$scope.status = 0;
+					}
 					console.log("OK");
 				};
  			},
