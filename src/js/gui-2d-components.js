@@ -108,11 +108,14 @@ Gui2DComponents.directive('selector', ['$document', function($document){
            		bindElementMove();
 
            		function mousemove(event) {
+
            			var realStep = 360/parseInt(scope.position);
            			var lastPos = realStep*parseInt(scope.position);
 		    		var prevY = element.attr('data-prevY');
 		    		var checkPos = element.attr('data-checkPos');
+		    		var currentPosition = element.attr('data-currentPosition');
 		    		if(typeof(checkPos)==="undefined")checkPos=0;
+		    		if(typeof(currentPosition)==="undefined")currentPosition=0;
 		    		// check max value 
 		    		if (y > lastPos) {y = lastPos;}
 		    		// check min value
@@ -121,6 +124,7 @@ Gui2DComponents.directive('selector', ['$document', function($document){
 		    		if (event.pageY < prevY) {
     					checkPos=parseInt(checkPos)+10;
     					if(checkPos>(realStep-1)){
+    						currentPosition = parseInt(currentPosition) +1;
     						y=y+realStep;
     						checkPos=0;
     					}
@@ -129,6 +133,7 @@ Gui2DComponents.directive('selector', ['$document', function($document){
     				} else {
     					checkPos=parseInt(checkPos)+10;
     					if(checkPos>(realStep-1)){
+    						currentPosition = parseInt(currentPosition) - 1;
     						y=y-realStep;
     						checkPos=0;
     					}
@@ -137,12 +142,13 @@ Gui2DComponents.directive('selector', ['$document', function($document){
     				//console.log(y);	
     				element.attr('data-prevY', event.pageY);
     				element.attr('data-checkPos', checkPos);
+    				element.attr('data-currentPosition', currentPosition);
 		      		var pie = element.find('pie');
 
     				yReal = y;
     				color = 'white';
     				
-		      		//ngModel.$setViewValue(value);
+		      		ngModel.$setViewValue(currentPosition);
 		      		pie.css('background-image','linear-gradient('+yReal+'deg, transparent 50%, '+color+' 50%),linear-gradient('+(yReal+4)+'deg, white 50%, transparent 50%');
            		}
 
