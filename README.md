@@ -37,18 +37,29 @@ angular.module('myApp', ['Gui2DComponents.js']);
 to use rotative component:
 
 ```html
-<rotative id="one" color="orange" min="0" max="10" step="0.1" label="gain"></rotative>
+<rotative id="one" color="orange" min="0" max="10" step="0.1" label="gain" ng-model="gainValue"></rotative>
 ```
 
 to use selector component:
 
 ```html
-<selector id="two" color="blue" position="5" label="type"></selector>
+<selector id="two" color="blue" position="5" label="type" ng-model="typeValue"></selector>
 ```
 
-to use switch component
+to use switch component:
 
 ```html
 <switch id="three" ng-model="switchStatus"></switch>
+```
+
+You can add nc-click attribute to switch component and read switch status on function body; for example:
+
+```javascript
+    $scope.play = function() {
+        // read switch component status from ng-model
+        if($scope.switchStatus === 1)
+    	   $scope.synth.playNote();
+        else $scope.stop();
+    };
 ```
 
