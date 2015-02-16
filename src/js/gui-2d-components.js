@@ -15,56 +15,56 @@ Gui2DComponents.directive('rotative', ['$document', function($document){
 			pie.css('border-color', $scope.color);
 		},
 		link: function(scope, element, attr, ngModel) {
-	        var x = 0, y = 90, yReal = 0, color = 'white', value = 0;
-	        var min = scope.min;
-	        var max = scope.max;
+			var x = 0, y = 90, yReal = 0, color = 'white', value = 0;
+			var min = scope.min;
+			var max = scope.max;
 			var step = scope.step, realStep = 0;
 
-            function bindElementMove() {
-                element.bind('mousedown', function (event) {
-                    // Prevent default dragging of selected content
-                    //console.log("binding element to move.");
-                    $document.bind('mousemove', mousemove);
-                    $document.bind('mouseup', mouseup);
-                });
-            }
+			function bindElementMove() {
+				element.bind('mousedown', function (event) {
+					// Prevent default dragging of selected content
+					//console.log("binding element to move.");
+					$document.bind('mousemove', mousemove);
+					$document.bind('mouseup', mouseup);
+				});
+			}
 
-            bindElementMove();
+			bindElementMove();
 
-		    function mousemove(event) {
-		    	var realStep = ((360*scope.step)/scope.max);
-		    	var prevY = element.attr('data-prevY');
-		    	// check max value (starting from 90deg the end is (360+90)deg then sub 5 to have a margin)
-		    	if (y > 449) {y = 449; value = parseInt(scope.max);}
-		    	// check min value
-		    	if (y < 99) {y = 99; value = parseInt(scope.min);}
-		    	// mouse goes down
-		    	if (event.pageY < prevY) {
-		    		y=y+realStep;
-		    		value = value + parseInt(scope.step);
-   				// mouse goes up
-    			} else {
-    				y=y-realStep;
-    				value = value - parseInt(scope.step);
-    			}
-    			//console.log(y);
-    			element.attr('data-prevY', event.pageY);
-		      	var pie = element.find('pie');
-		      	if (y > 270) {
-    				yReal = y - 270 + 81;
-    				color = scope.color;
-    			} else {
-    				yReal = y;
-    				color = 'white';
-    			}
-		      	ngModel.$setViewValue(value);
-		      	pie.css('background-image','linear-gradient('+yReal+'deg, transparent 50%, '+color+' 50%),linear-gradient(90deg, white 50%, transparent 50%');
-		    }
+			function mousemove(event) {
+				var realStep = ((360*scope.step)/scope.max);
+				var prevY = element.attr('data-prevY');
+				// check max value (starting from 90deg the end is (360+90)deg then sub 5 to have a margin)
+				if (y > 449) {y = 449; value = parseInt(scope.max);}
+				// check min value
+				if (y < 99) {y = 99; value = parseInt(scope.min);}
+				// mouse goes down
+				if (event.pageY < prevY) {
+					y=y+realStep;
+					value = value + parseInt(scope.step);
+				// mouse goes up
+				} else {
+					y=y-realStep;
+					value = value - parseInt(scope.step);
+				}
+				//console.log(y);
+				element.attr('data-prevY', event.pageY);
+				var pie = element.find('pie');
+				if (y > 270) {
+					yReal = y - 270 + 81;
+					color = scope.color;
+				} else {
+					yReal = y;
+					color = 'white';
+				}
+				ngModel.$setViewValue(value);
+				pie.css('background-image','linear-gradient('+yReal+'deg, transparent 50%, '+color+' 50%),linear-gradient(90deg, white 50%, transparent 50%');
+			}
 
-    		function mouseup() {
-      			$document.off('mousemove', mousemove);
-      			$document.off('mouseup', mouseup);
-    		}
+			function mouseup() {
+				$document.off('mousemove', mousemove);
+				$document.off('mouseup', mouseup);
+			}
 		}
 	};
 }]);
@@ -87,63 +87,63 @@ Gui2DComponents.directive('selector', ['$document', function($document){
 			link: function(scope, element, attr, ngModel) {
 				var x = 0, y = 110, yReal = 0, color = 'white', currentPosition = 0;
 				function bindElementMove() {
-	                element.bind('mousedown', function (event) {
-	                    // Prevent default dragging of selected content
-	                    console.log("binding element to move.");
-	                    $document.bind('mousemove', mousemove);
-	                    $document.bind('mouseup', mouseup);
-	                });
-            	}
+					element.bind('mousedown', function (event) {
+						// Prevent default dragging of selected content
+						console.log("binding element to move.");
+						$document.bind('mousemove', mousemove);
+						$document.bind('mouseup', mouseup);
+					});
+				}
 
-           		bindElementMove();
+				bindElementMove();
 
-           		function mousemove(event) {
+				function mousemove(event) {
 
-           			var realStep = 360/parseInt(scope.position);
-           			var lastPos = realStep*parseInt(scope.position);
-		    		var prevY = element.attr('data-prevY');
-		    		var checkPos = element.attr('data-checkPos');
-		    		currentPosition = element.attr('data-currentPosition');
-		    		if(typeof(checkPos)==="undefined")checkPos=0;
-		    		if(typeof(currentPosition)==="undefined")currentPosition=0;
-		    		// check max value 
-		    		if (y > lastPos) {y = lastPos;}
-		    		// check min value
-		    		if (y < 110) {y = 110;}
-		    		// mouse goes down
-		    		if (event.pageY < prevY) {
-    					checkPos=parseInt(checkPos)+10;
-    					if(checkPos>(realStep-1)){
-    						currentPosition = parseInt(currentPosition) + 1;
-    						y=y+realStep;
-    						checkPos=0;
-    					}
-   					// mouse goes up
-    				} else {
-    					checkPos=parseInt(checkPos)+10;
-    					if(checkPos>(realStep-1)){
-    						currentPosition = parseInt(currentPosition) - 1;
-    						y=y-realStep;
-    						checkPos=0;
-    					}
-    				}
-    				//console.log(y);	
-    				element.attr('data-prevY', event.pageY);
-    				element.attr('data-checkPos', checkPos);
-    				element.attr('data-currentPosition', currentPosition);
-		      		var pie = element.find('pie');
+					var realStep = 360/parseInt(scope.position);
+					var lastPos = realStep*parseInt(scope.position);
+					var prevY = element.attr('data-prevY');
+					var checkPos = element.attr('data-checkPos');
+					currentPosition = element.attr('data-currentPosition');
+					if(typeof(checkPos)==="undefined")checkPos=0;
+					if(typeof(currentPosition)==="undefined")currentPosition=0;
+					// check max value 
+					if (y > lastPos) {y = lastPos;}
+					// check min value
+					if (y < 110) {y = 110;}
+					// mouse goes down
+					if (event.pageY < prevY) {
+						checkPos=parseInt(checkPos)+10;
+						if(checkPos>(realStep-1)){
+							currentPosition = parseInt(currentPosition) + 1;
+							y=y+realStep;
+							checkPos=0;
+						}
+					// mouse goes up
+					} else {
+						checkPos=parseInt(checkPos)+10;
+						if(checkPos>(realStep-1)){
+							currentPosition = parseInt(currentPosition) - 1;
+							y=y-realStep;
+							checkPos=0;
+						}
+					}
+					//console.log(y);	
+					element.attr('data-prevY', event.pageY);
+					element.attr('data-checkPos', checkPos);
+					element.attr('data-currentPosition', currentPosition);
+					var pie = element.find('pie');
 
-    				yReal = y;
-    				color = 'white';
-    				
-		      		ngModel.$setViewValue(currentPosition);
-		      		pie.css('background-image','linear-gradient('+yReal+'deg, transparent 50%, '+color+' 50%),linear-gradient('+(yReal+4)+'deg, white 50%, transparent 50%');
-           		}
+					yReal = y;
+					color = 'white';
+					
+					ngModel.$setViewValue(currentPosition);
+					pie.css('background-image','linear-gradient('+yReal+'deg, transparent 50%, '+color+' 50%),linear-gradient('+(yReal+4)+'deg, white 50%, transparent 50%');
+				}
 
-           		function mouseup() {
-      				$document.off('mousemove', mousemove);
-      				$document.off('mouseup', mouseup);
-    			}
+				function mouseup() {
+					$document.off('mousemove', mousemove);
+					$document.off('mouseup', mouseup);
+				}
 
 
 			}
@@ -176,7 +176,7 @@ Gui2DComponents.directive('switch', ['$document', function($document){
 					}
 
 				};
- 			},
+			},
 			link: function(scope, element, attr, ngModel) {
 				ngModel.$setViewValue(scope.status);
 				element.bind('click', function() {
