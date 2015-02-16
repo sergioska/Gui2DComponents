@@ -176,10 +176,18 @@ Gui2DComponents.directive('switch', ['$document', function($document){
 						$scope.switchOff = 1;
 						$scope.status = 0;
 					}
-					console.log("OK");
+
 				};
  			},
 			link: function(scope, element, attr, ngModel) {
+				ngModel.$setViewValue(scope.status);
+				element.bind('click', function() {
+					scope.$apply(setStatus());
+				});
+
+				setStatus = function() {
+					ngModel.$setViewValue(scope.status);
+				};
 			}
 		};
 }]);
