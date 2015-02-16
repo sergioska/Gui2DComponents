@@ -55,6 +55,7 @@ to use switch component:
 You can add nc-click attribute to switch component and read switch status on function body; for example:
 
 ```javascript
+    // suppose that we have ng-click="play()" like attribute on html switch component declaration
     $scope.play = function() {
         // read switch component status from ng-model
         if($scope.switchStatus === 1)
