@@ -118,7 +118,6 @@ Gui2DComponents.directive('selector', ['$document', function($document){
     						y=y+realStep;
     						checkPos=0;
     					}
-		    			//value = value + parseInt(scope.step);
    					// mouse goes up
     				} else {
     					checkPos=parseInt(checkPos)+10;
@@ -127,7 +126,6 @@ Gui2DComponents.directive('selector', ['$document', function($document){
     						y=y-realStep;
     						checkPos=0;
     					}
-    					//value = value - parseInt(scope.step);
     				}
     				//console.log(y);	
     				element.attr('data-prevY', event.pageY);
