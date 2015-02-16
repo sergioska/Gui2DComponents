@@ -34,11 +34,21 @@ angular.module('myApp', ['Gui2DComponents.js']);
 
 # Using
 
+to use rotative component:
+
 ```html
 <rotative id="one" color="orange" min="0" max="10" step="0.1" label="gain"></rotative>
 ```
 
+to use selector component:
+
 ```html
 <selector id="two" color="blue" position="5" label="type"></selector>
+```
+
+to use switch component
+
+```html
+<switch id="three" ng-model="switchStatus"></switch>
 ```
 
