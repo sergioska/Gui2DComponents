@@ -14,11 +14,12 @@ describe('Gui2DComponents: rotative/selector', function() {
 	}));
 
 	describe('test rotative component', function() {
-		var  html, element, controller;
-		beforeEach(inject(function($controller) {
-			controller = $controller('RotativeController', {$scope: scope});
+		var  html, element, controller, doc;
+		beforeEach(inject(function($controller, $document) {
+			doc = $document;
 			html = angular.element('<rotative id="uno" min="{{min}}" max="{{max}}" step="{{step}}" label="{{lable}}" color="{{color}}"></rotative>');
 			element = $compile(html)(scope);
+			controller = $controller('RotativeController', {$scope: scope, $element: element});
 
 			scope.min = 0;
 			scope.max = 100
@@ -34,17 +35,20 @@ describe('Gui2DComponents: rotative/selector', function() {
 			expect(parseInt(ele.min)).toBe(0);
 			expect(parseInt(ele.max)).toBe(100);
 			expect(parseInt(ele.step)).toBe(1);
+			expect(parseInt(scope.getValue())).toBe(0);
 			console.log(scope.getValue());
 		});
 
 		it("test action", function() {
-			var ele = element.isolateScope();
+			//var ele = element.isolateScope();
 			element.triggerHandler('mousedown');
-			element.triggerHandler({
-				type : "mousemove",
-				pageX: 48,
-				pageY: 10200
+			doc.triggerHandler({
+				type: "mousemove",
+				pageX: 100,
+				pageY: 30000
 			});
+			//scope.$digest();
+			//console.log(ele);
 			console.log(scope.getValue());
 		});
 

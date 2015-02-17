@@ -14,7 +14,7 @@ Gui2DComponents.controller('RotativeController', function($scope, $element) {
 
 Gui2DComponents.directive('rotative', ['$document', function($document){
 	return {
-		require : '?ngModel',
+		require : '^?ngModel',
 		restrict: 'E',
 		replace: true,
 		templateUrl: "bower_components/gui-2d-components/src/js/templates/rotative.html",
