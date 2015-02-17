@@ -149,14 +149,7 @@ Gui2DComponents.directive('selector', ['$document', function($document){
 		};	
 }]);
 
-Gui2DComponents.directive('switch', ['$document', function($document){
-		return {
-			require : '?ngModel',	
-			restrict: 'E',
-			replace: true,
-			templateUrl: "bower_components/gui-2d-components/src/js/templates/switch.html",
-			scope: {color: "@", ngModel: "="},
-			controller: function($scope, $element) {
+Gui2DComponents.controller('SwitchController', function($scope) {
 				$scope.status = 0;
 				$scope.ngModel = 0;
 				$scope.init = function() {
@@ -176,7 +169,16 @@ Gui2DComponents.directive('switch', ['$document', function($document){
 					}
 
 				};
-			},
+});
+
+Gui2DComponents.directive('switch', ['$document', function($document){
+		return {
+			require : '?ngModel',	
+			restrict: 'E',
+			replace: true,
+			templateUrl: "bower_components/gui-2d-components/src/js/templates/switch.html",
+			scope: {color: "@", ngModel: "="},
+			controller: 'SwitchController',
 			link: function(scope, element, attr, ngModel) {
 				//ngModel.$setViewValue(scope.status);
 				element.bind('click', function() {
