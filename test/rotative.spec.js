@@ -40,7 +40,7 @@ describe('Gui2DComponents: rotative/selector', function() {
 		});
 
 		it("test action", function() {
-			//var ele = element.isolateScope();
+			//var ele = element.isolateScope();""
 			element.triggerHandler('mousedown');
 			doc.triggerHandler({
 				type: "mousemove",
