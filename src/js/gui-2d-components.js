@@ -155,7 +155,7 @@ Gui2DComponents.directive('switch', ['$document', function($document){
 			restrict: 'E',
 			replace: true,
 			templateUrl: "bower_components/gui-2d-components/src/js/templates/switch.html",
-			scope: {color: "@", label: "@", position: "@", ngModel: "="},
+			scope: {color: "@", ngModel: "="},
 			controller: function($scope, $element) {
 				$scope.status = 0;
 				$scope.ngModel = 0;
