@@ -9,7 +9,7 @@ Gui2DComponents.controller('RotativeController', function($scope, $element) {
 	$scope.value = 0;
 	$scope.getValue = function() {
 		return $scope.value;
-	}
+	};
 });
 
 Gui2DComponents.directive('rotative', ['$document', function($document){
