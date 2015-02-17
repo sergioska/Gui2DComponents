@@ -13,7 +13,7 @@ Gui2DComponents.directive('rotative', ['$document', function($document){
 			content.css('color', $scope.color);
 			pie.css('background-color', $scope.color);
 			pie.css('border-color', $scope.color);
-			var value = 0;
+			$scope.value = 0;
 		},
 		link: function(scope, element, attr, ngModel) {
 			var x = 0, y = 90, yReal = 0, color = 'white';
@@ -42,11 +42,11 @@ Gui2DComponents.directive('rotative', ['$document', function($document){
 				// mouse goes down
 				if (event.pageY < prevY) {
 					y=y+realStep;
-					value = value + parseInt(scope.step);
+					scope.value = scope.value + parseInt(scope.step);
 				// mouse goes up
 				} else {
 					y=y-realStep;
-					value = value - parseInt(scope.step);
+					scope.value = scope.value - parseInt(scope.step);
 				}
 				//console.log(y);
 				element.attr('data-prevY', event.pageY);
@@ -58,7 +58,7 @@ Gui2DComponents.directive('rotative', ['$document', function($document){
 					yReal = y;
 					color = 'white';
 				}
-				ngModel.$setViewValue(value);
+				ngModel.$setViewValue(scope.value);
 				pie.css('background-image','linear-gradient('+yReal+'deg, transparent 50%, '+color+' 50%),linear-gradient(90deg, white 50%, transparent 50%');
 			}
 
