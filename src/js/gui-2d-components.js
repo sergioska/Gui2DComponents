@@ -13,9 +13,10 @@ Gui2DComponents.directive('rotative', ['$document', function($document){
 			content.css('color', $scope.color);
 			pie.css('background-color', $scope.color);
 			pie.css('border-color', $scope.color);
+			var value = 0;
 		},
 		link: function(scope, element, attr, ngModel) {
-			var x = 0, y = 90, yReal = 0, color = 'white', value = 0;
+			var x = 0, y = 90, yReal = 0, color = 'white';
 			var min = scope.min;
 			var max = scope.max;
 			var step = scope.step, realStep = 0;
