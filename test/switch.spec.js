@@ -15,25 +15,37 @@ describe('Gui2DComponents: selector', function() {
 	describe('test rotative component', function() {
 
 		var  html, element, controller;
-		beforeEach(function() {
-			//console.log(scope);
+		beforeEach(inject(function($controller) {
+
+			controller = $controller('SwitchController', {$scope: scope});
 			scope.$digest();
 
 			html = angular.element('<switch id="tre"></switch>');
 			element = $compile(html)(scope);
-			controller = element.controller('', );
 
 			scope.model = "switchValue";
 			scope.switchOn = 0;
 			scope.switchOff = 1;
-		});
+			scope.init();
+		}));
 
 		it("test start position", function() {
-			//scope.$digest();
-			console.log(controller);
 			var ele = element.isolateScope();
-			console.log(element);
-			expect(scope.switchOff).toBe(1);
+			expect(scope.status).toBe(0);
 		});
+
+		it("test on action", function() {
+			var ele = element.isolateScope();
+			scope.onOff();
+			expect(scope.status).toBe(1);
+		});
+
+		it("test off action", function() {
+			var ele = element.isolateScope();
+			scope.status = 1;
+			scope.onOff();
+			expect(scope.status).toBe(0);
+		});
+
 	});
 });

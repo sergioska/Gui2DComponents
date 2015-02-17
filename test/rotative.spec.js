@@ -17,8 +17,7 @@ describe('Gui2DComponents: selector', function() {
 		beforeEach(function() {
 			html = '<selector id="due" position="{{position}}" color="{{color}}" label="{{label}}"></selector>';
 			element = $compile(html)(scope);
-			//console.log(element);
-			//scope.$digest();
+
 			scope.position = 5;
 			scope.color = "blue";
 			scope.label = "type";
