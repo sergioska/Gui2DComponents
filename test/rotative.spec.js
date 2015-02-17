@@ -2,9 +2,10 @@
 
 describe('Gui2DComponents: selector', function() {
 	var scope, $rootScope, $compile;
+
 	beforeEach(module('templates'));
 	beforeEach(module('Gui2DComponents'));
-
+	
 	beforeEach(inject(function(_$rootScope_, _$compile_) {
 		$rootScope = _$rootScope_;
 		$compile = _$compile_;
