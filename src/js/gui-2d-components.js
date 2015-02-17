@@ -178,7 +178,7 @@ Gui2DComponents.directive('switch', ['$document', function($document){
 				};
 			},
 			link: function(scope, element, attr, ngModel) {
-				ngModel.$setViewValue(scope.status);
+				//ngModel.$setViewValue(scope.status);
 				element.bind('click', function() {
 					scope.$apply(setStatus());
 				});
