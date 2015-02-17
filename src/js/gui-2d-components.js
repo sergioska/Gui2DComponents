@@ -89,7 +89,6 @@ Gui2DComponents.directive('selector', ['$document', function($document){
 				function bindElementMove() {
 					element.bind('mousedown', function (event) {
 						// Prevent default dragging of selected content
-						console.log("binding element to move.");
 						$document.bind('mousemove', mousemove);
 						$document.bind('mouseup', mouseup);
 					});
@@ -159,6 +158,7 @@ Gui2DComponents.directive('switch', ['$document', function($document){
 			scope: {color: "@", label: "@", position: "@", ngModel: "="},
 			controller: function($scope, $element) {
 				$scope.status = 0;
+				$scope.ngModel = 0;
 				$scope.init = function() {
 					$scope.switchOn = 0;
 					$scope.switchOff = 1;
