@@ -1,5 +1,17 @@
 var Gui2DComponents = angular.module('Gui2DComponents', []);
 
+Gui2DComponents.controller('RotativeController', function($scope, $element) {
+	var content = $element;
+	var pie = $element.find('pie');
+	content.css('color', $scope.color);
+	pie.css('background-color', $scope.color);
+	pie.css('border-color', $scope.color);
+	$scope.value = 0;
+	$scope.getValue = function() {
+		return $scope.value;
+	}
+});
+
 Gui2DComponents.directive('rotative', ['$document', function($document){
 	return {
 		require : '?ngModel',
@@ -7,14 +19,7 @@ Gui2DComponents.directive('rotative', ['$document', function($document){
 		replace: true,
 		templateUrl: "bower_components/gui-2d-components/src/js/templates/rotative.html",
 		scope: {color: "@", min: "@", max: "@", step: "@", label: "@", ngModel: "="},
-		controller: function($scope, $element) {
-			var content = $element;
-			var pie = $element.find('pie');
-			content.css('color', $scope.color);
-			pie.css('background-color', $scope.color);
-			pie.css('border-color', $scope.color);
-			$scope.value = 0;
-		},
+		controller: 'RotativeController',
 		link: function(scope, element, attr, ngModel) {
 			var x = 0, y = 90, yReal = 0, color = 'white';
 			var min = scope.min;
