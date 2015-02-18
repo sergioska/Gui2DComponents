@@ -20,36 +20,94 @@ describe('Gui2DComponents: rotative/selector', function() {
 			html = angular.element('<rotative id="uno" min="{{min}}" max="{{max}}" step="{{step}}" label="{{lable}}" color="{{color}}"></rotative>');
 			element = $compile(html)(scope);
 			controller = $controller('RotativeController', {$scope: scope, $element: element});
+			//scope.$digest();
 
 			scope.min = 0;
 			scope.max = 100
 			scope.step = 1;
 			scope.color = "blue";
 			scope.label = "type";
-			scope.$digest();
+			//scope.$digest();
 
 		}));
 
 		it("should be init state", function() {
+			scope.$digest();
 			var ele = element.isolateScope();
 			expect(parseInt(ele.min)).toBe(0);
 			expect(parseInt(ele.max)).toBe(100);
 			expect(parseInt(ele.step)).toBe(1);
-			expect(parseInt(scope.getValue())).toBe(0);
-			console.log(scope.getValue());
+			expect(parseInt(ele.out)).toBe(94);
+			//console.log("OK " + scope.test);
+
 		});
 
 		it("test action", function() {
-			//var ele = element.isolateScope();""
+			
+			console.log("testing mouse action ...");
+			scope.$digest();
+			var ele = element.isolateScope();
+
+			// a first mouse move up
 			element.triggerHandler('mousedown');
 			doc.triggerHandler({
 				type: "mousemove",
-				pageX: 100,
-				pageY: 30000
+				pageX: 0,
+				pageY: 300
 			});
-			//scope.$digest();
-			//console.log(ele);
-			console.log(scope.getValue());
+			doc.triggerHandler('mouseup');
+			console.log("DEG: " + ele.out);
+
+			// second mouse move up
+			element.triggerHandler('mousedown');
+			doc.triggerHandler({
+				type: "mousemove",
+				pageX: 0,
+				pageY: 200
+			});
+			doc.triggerHandler('mouseup');
+			console.log("DEG: " + ele.out);
+
+			// another mouse move up
+			element.triggerHandler('mousedown');
+			doc.triggerHandler({
+				type: "mousemove",
+				pageX: 0,
+				pageY: 100
+			});
+			doc.triggerHandler('mouseup');
+			console.log("DEG: " + ele.out);
+
+			// start mouse move down (return to start point)
+			element.triggerHandler('mousedown');
+			doc.triggerHandler({
+				type: "mousemove",
+				pageX: 0,
+				pageY: 500
+			});
+			doc.triggerHandler('mouseup');
+			console.log("DEG: " + ele.out);
+
+			// ... mouse move down
+			element.triggerHandler('mousedown');
+			doc.triggerHandler({
+				type: "mousemove",
+				pageX: 0,
+				pageY: 800
+			});
+			doc.triggerHandler('mouseup');
+			console.log("DEG: " + ele.out);
+
+			// ... mouse move down (start point)
+			element.triggerHandler('mousedown');
+			doc.triggerHandler({
+				type: "mousemove",
+				pageX: 0,
+				pageY: 1000
+			});
+			doc.triggerHandler('mouseup');
+			expect(ele.out).toBe(94);
+			
 		});
 
 	});

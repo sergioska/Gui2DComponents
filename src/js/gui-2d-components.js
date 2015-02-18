@@ -6,10 +6,6 @@ Gui2DComponents.controller('RotativeController', function($scope, $element) {
 	content.css('color', $scope.color);
 	pie.css('background-color', $scope.color);
 	pie.css('border-color', $scope.color);
-	$scope.value = 0;
-	$scope.getValue = function() {
-		return $scope.value;
-	};
 });
 
 Gui2DComponents.directive('rotative', ['$document', function($document){
@@ -18,13 +14,14 @@ Gui2DComponents.directive('rotative', ['$document', function($document){
 		restrict: 'E',
 		replace: true,
 		templateUrl: "bower_components/gui-2d-components/src/js/templates/rotative.html",
-		scope: {color: "@", min: "@", max: "@", step: "@", label: "@", ngModel: "="},
+		scope: {color: "@", min: "@", max: "@", step: "@", label: "@", ngModel: "=", out: "@"},
 		controller: 'RotativeController',
 		link: function(scope, element, attr, ngModel) {
+			scope.out = 94;
 			var x = 0, y = 90, yReal = 0, color = 'white';
 			var min = scope.min;
 			var max = scope.max;
-			var step = scope.step, realStep = 0;
+			var step = scope.step, realStep = 0, output = 0;
 
 			function bindElementMove() {
 				element.bind('mousedown', function (event) {
@@ -40,20 +37,24 @@ Gui2DComponents.directive('rotative', ['$document', function($document){
 			function mousemove(event) {
 				var realStep = ((360*scope.step)/scope.max);
 				var prevY = element.attr('data-prevY');
+				if(typeof(prevY)==="undefined")prevY=0;
+				
 				// check max value (starting from 90deg the end is (360+90)deg then sub 5 to have a margin)
-				if (y > 449) {y = 449; value = parseInt(scope.max);}
-				// check min value
-				if (y < 99) {y = 99; value = parseInt(scope.min);}
+				if (y > 449) {y = 449; output = parseInt(scope.max);}
+
 				// mouse goes down
 				if (event.pageY < prevY) {
 					y=y+realStep;
-					scope.value = scope.value + parseInt(scope.step);
+					output = output + parseInt(scope.step);
 				// mouse goes up
 				} else {
 					y=y-realStep;
-					scope.value = scope.value - parseInt(scope.step);
+					output = output - parseInt(scope.step);
 				}
-				//console.log(y);
+
+				// check min value
+				if (y < 94) {y = 94; output = parseInt(scope.min);}
+
 				element.attr('data-prevY', event.pageY);
 				var pie = element.find('pie');
 				if (y > 270) {
@@ -63,7 +64,13 @@ Gui2DComponents.directive('rotative', ['$document', function($document){
 					yReal = y;
 					color = 'white';
 				}
-				ngModel.$setViewValue(scope.value);
+
+				scope.out = yReal;
+				if(!ngModel){
+                	return;
+            	}
+				ngModel.$setViewValue(output);
+
 				pie.css('background-image','linear-gradient('+yReal+'deg, transparent 50%, '+color+' 50%),linear-gradient(90deg, white 50%, transparent 50%');
 			}
 
