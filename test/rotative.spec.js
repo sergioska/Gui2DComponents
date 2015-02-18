@@ -40,72 +40,68 @@ describe('Gui2DComponents: rotative/selector', function() {
 
 		});
 
-		it("test action", function() {
+		it("test begin of rotation", function() {
 			
 			console.log("testing mouse action ...");
 			scope.$digest();
 			var ele = element.isolateScope();
 
-			// a first mouse move up
-			element.triggerHandler('mousedown');
-			doc.triggerHandler({
-				type: "mousemove",
-				pageX: 0,
-				pageY: 300
-			});
-			doc.triggerHandler('mouseup');
-			console.log("DEG: " + ele.out);
+			var action = function(y) {
+				element.triggerHandler('mousedown');
+				doc.triggerHandler({
+					type: "mousemove",
+					pageX: 0,
+					pageY: y
+				});
+				doc.triggerHandler('mouseup');
+				return ele.out;
+			};
 
-			// second mouse move up
-			element.triggerHandler('mousedown');
-			doc.triggerHandler({
-				type: "mousemove",
-				pageX: 0,
-				pageY: 200
-			});
-			doc.triggerHandler('mouseup');
-			console.log("DEG: " + ele.out);
+			// mouse move up
+			action(300);
+			console.log("OUT: " + ele.out);
+			// mouse move up
+			action(200);
+			console.log("OUT: " + ele.out);
+			// mouse move up
+			action(100);
+			console.log("OUT: " + ele.out);
+			// mouse move down (return to start point)
+			action(500);
+			console.log("OUT: " + ele.out);
+			// mouse move down
+			action(800);
+			console.log("OUT: " + ele.out);
+			// mouse move down (start point)
+			action(1000);
+			console.log("OUT: " + ele.out);
 
-			// another mouse move up
-			element.triggerHandler('mousedown');
-			doc.triggerHandler({
-				type: "mousemove",
-				pageX: 0,
-				pageY: 100
-			});
-			doc.triggerHandler('mouseup');
-			console.log("DEG: " + ele.out);
-
-			// start mouse move down (return to start point)
-			element.triggerHandler('mousedown');
-			doc.triggerHandler({
-				type: "mousemove",
-				pageX: 0,
-				pageY: 500
-			});
-			doc.triggerHandler('mouseup');
-			console.log("DEG: " + ele.out);
-
-			// ... mouse move down
-			element.triggerHandler('mousedown');
-			doc.triggerHandler({
-				type: "mousemove",
-				pageX: 0,
-				pageY: 800
-			});
-			doc.triggerHandler('mouseup');
-			console.log("DEG: " + ele.out);
-
-			// ... mouse move down (start point)
-			element.triggerHandler('mousedown');
-			doc.triggerHandler({
-				type: "mousemove",
-				pageX: 0,
-				pageY: 1000
-			});
-			doc.triggerHandler('mouseup');
-			expect(ele.out).toBe(94);
+			expect(ele.out).toBe(0);
 			
+		});
+
+		it("test the end of rotation", function() {
+			
+			console.log("testing mouse action ...");
+			scope.$digest();
+			var ele = element.isolateScope();
+
+			var action = function(y) {
+				element.triggerHandler('mousedown');
+				doc.triggerHandler({
+					type: "mousemove",
+					pageX: 0,
+					pageY: y
+				});
+				doc.triggerHandler('mouseup');
+				return ele.out;
+			};
+
+			var output = 0;
+			for(var i=200;i>0;i--)
+				output = action(i);
+			expect(ele.out).toBe(100);
+
 		});
 
 	});

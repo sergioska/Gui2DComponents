@@ -38,9 +38,6 @@ Gui2DComponents.directive('rotative', ['$document', function($document){
 				var realStep = ((360*scope.step)/scope.max);
 				var prevY = element.attr('data-prevY');
 				if(typeof(prevY)==="undefined")prevY=0;
-				
-				// check max value (starting from 90deg the end is (360+90)deg then sub 5 to have a margin)
-				if (y > 449) {y = 449; output = parseInt(scope.max);}
 
 				// mouse goes down
 				if (event.pageY < prevY) {
@@ -58,14 +55,17 @@ Gui2DComponents.directive('rotative', ['$document', function($document){
 				element.attr('data-prevY', event.pageY);
 				var pie = element.find('pie');
 				if (y > 270) {
-					yReal = y - 270 + 81;
+					yReal = y - 270 + 86;
 					color = scope.color;
 				} else {
 					yReal = y;
 					color = 'white';
 				}
 
-				scope.out = yReal;
+				// check max value (starting from 90deg the end is (360+90)deg then sub 5 to have a margin)
+				if (y > 448) {y = 448; output = parseInt(scope.max);}
+
+				scope.out = output;
 				if(!ngModel){
                 	return;
             	}
