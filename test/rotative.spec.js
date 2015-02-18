@@ -20,25 +20,23 @@ describe('Gui2DComponents: rotative/selector', function() {
 			html = angular.element('<rotative id="uno" min="{{min}}" max="{{max}}" step="{{step}}" label="{{lable}}" color="{{color}}"></rotative>');
 			element = $compile(html)(scope);
 			controller = $controller('RotativeController', {$scope: scope, $element: element});
-			//scope.$digest();
 
 			scope.min = 0;
 			scope.max = 100
 			scope.step = 1;
 			scope.color = "blue";
 			scope.label = "type";
-			//scope.$digest();
 
 		}));
 
 		it("should be init state", function() {
+			// call $digest before test
 			scope.$digest();
 			var ele = element.isolateScope();
 			expect(parseInt(ele.min)).toBe(0);
 			expect(parseInt(ele.max)).toBe(100);
 			expect(parseInt(ele.step)).toBe(1);
 			expect(parseInt(ele.out)).toBe(94);
-			//console.log("OK " + scope.test);
 
 		});
 
@@ -134,12 +132,10 @@ describe('Gui2DComponents: rotative/selector', function() {
 
 		it("test mouse move", function() {
 			var ele = element.isolateScope();
-
+			// @todo ...
 			element.triggerHandler('mousedown');
 			element.triggerHandler('mousemove');
 			element.triggerHandler('event.pageY');
-			
-			//expect(element.dataPrevY).toBe('100');
 
 		});
 	});
