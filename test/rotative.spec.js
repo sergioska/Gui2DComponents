@@ -1,6 +1,6 @@
 'use strict';
 
-describe('Gui2DComponents: rotative/selector', function() {
+describe('Gui2DComponents: rotative', function() {
 	var scope, $rootScope, $compile;
 
 	beforeEach(module('templates'));
@@ -42,7 +42,7 @@ describe('Gui2DComponents: rotative/selector', function() {
 
 		it("test begin of rotation", function() {
 			
-			console.log("testing mouse action ...");
+			console.log("testing mouse action on rotative ...");
 			scope.$digest();
 			var ele = element.isolateScope();
 
@@ -82,7 +82,7 @@ describe('Gui2DComponents: rotative/selector', function() {
 
 		it("test the end of rotation", function() {
 			
-			console.log("testing mouse action ...");
+			console.log("testing mouse action on rotative ...");
 			scope.$digest();
 			var ele = element.isolateScope();
 
