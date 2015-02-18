@@ -45,11 +45,11 @@ Gui2DComponents.directive('rotative', ['$document', function($document){
 				// mouse goes down
 				if (event.pageY < prevY) {
 					y=y+realStep;
-					output = output + parseInt(scope.step);
+					output = output + parseFloat(scope.step);
 				// mouse goes up
 				} else {
 					y=y-realStep;
-					output = output - parseInt(scope.step);
+					output = output - parseFloat(scope.step);
 				}
 
 				// check min value
@@ -69,6 +69,7 @@ Gui2DComponents.directive('rotative', ['$document', function($document){
 				if(!ngModel){
                 	return;
             	}
+            	output = Math.round(output*100)/100;
 				ngModel.$setViewValue(output);
 
 				pie.css('background-image','linear-gradient('+yReal+'deg, transparent 50%, '+color+' 50%),linear-gradient(90deg, white 50%, transparent 50%');
