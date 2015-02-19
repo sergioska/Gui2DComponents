@@ -1,8 +1,8 @@
 var testGui = angular.module('testGui', ['Gui2DComponents']);
 
 testGui.controller('MainController', function($scope){
+	console.log("OKOKOKOKKOK");
 	$scope.init = function() {
-		console.log("OKOKOKOKOKOK");
 		$scope.gain = 40;
 	}
 	$scope.$watch(function() {
