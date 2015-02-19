@@ -4,9 +4,9 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="chrome=1">
     <title>Gui2dcomponents by sergioska</title>
-    <link rel="stylesheet" href="dist/css/gui-2d-components.css"/>
     <link rel="stylesheet" href="stylesheets/styles.css">
     <link rel="stylesheet" href="stylesheets/pygment_trac.css">
+    <link rel="stylesheet" href="dist/css/gui-2d-components.css"/>
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
     <!--[if lt IE 9]>
     <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
@@ -16,8 +16,10 @@
     <script type="text/javascript" src="dist/js/gui-2d-components.js"></script>
     <script type="text/javascript" src="javascripts/test.js"></script>
   </head>
-  <body>
+  <body ng-app="testGui">
+    
     <div class="wrapper" ng-controller="MainController" ng-init="init()">
+
       <header>
         <h1>Gui2dcomponents</h1>
         <p>Alternative angularjs components for GUI</p>
@@ -30,18 +32,25 @@
           <li><a href="https://github.com/sergioska/Gui2DComponents/tarball/master">Download <strong>TAR Ball</strong></a></li>
           <li><a href="https://github.com/sergioska/Gui2DComponents">View On <strong>GitHub</strong></a></li>
         </ul>
+
+        <div style="float:left;">
+            <rotative min="0" max="100" step="1" ng-model="gain" label="gain" color="orange"></rotative>
+        </div>
+
+        <div style="float:left;">
+            <selector position="5" color="blue" ng-model="type" label="type"></selector>
+        </div>
+
       </header>
       <section>
         <h1>
 <a id="gui2dcomponents" class="anchor" href="#gui2dcomponents" aria-hidden="true"><span class="octicon octicon-link"></span></a>Gui2DComponents</h1>
-<rotative id="uno" min="0" max="100" step="1" ng-model="gain" label="gain" color="orange"></rotative>
+
 <p>Alternative angularjs components for GUI</p>
 
 <blockquote>
 <p>An alternative collection of reusable UI components for <a href="https://angularjs.org/">AngularJS</a></p>
 </blockquote>
-
-<p>Live demo coming soon ...</p>
 
 <h2>
 <a id="quick-start" class="anchor" href="#quick-start" aria-hidden="true"><span class="octicon octicon-link"></span></a>Quick start</h2>
@@ -76,13 +85,19 @@ grunt client</pre></div>
 
 <div class="highlight highlight-html"><pre>&lt;<span class="pl-ent">rotative</span> <span class="pl-e">id</span>=<span class="pl-s1"><span class="pl-pds">"</span>one<span class="pl-pds">"</span></span> <span class="pl-e">color</span>=<span class="pl-s1"><span class="pl-pds">"</span>orange<span class="pl-pds">"</span></span> <span class="pl-e">min</span>=<span class="pl-s1"><span class="pl-pds">"</span>0<span class="pl-pds">"</span></span> <span class="pl-e">max</span>=<span class="pl-s1"><span class="pl-pds">"</span>10<span class="pl-pds">"</span></span> <span class="pl-e">step</span>=<span class="pl-s1"><span class="pl-pds">"</span>0.1<span class="pl-pds">"</span></span> <span class="pl-e">label</span>=<span class="pl-s1"><span class="pl-pds">"</span>gain<span class="pl-pds">"</span></span> <span class="pl-e">ng-model</span>=<span class="pl-s1"><span class="pl-pds">"</span>gainValue<span class="pl-pds">"</span></span>&gt;&lt;/<span class="pl-ent">rotative</span>&gt;</pre></div>
 
+<rotative min="0" max="100" step="1" ng-model="gain" label="gain" color="orange"></rotative>
+
 <p>to use selector component:</p>
 
 <div class="highlight highlight-html"><pre>&lt;<span class="pl-ent">selector</span> <span class="pl-e">id</span>=<span class="pl-s1"><span class="pl-pds">"</span>two<span class="pl-pds">"</span></span> <span class="pl-e">color</span>=<span class="pl-s1"><span class="pl-pds">"</span>blue<span class="pl-pds">"</span></span> <span class="pl-e">position</span>=<span class="pl-s1"><span class="pl-pds">"</span>5<span class="pl-pds">"</span></span> <span class="pl-e">label</span>=<span class="pl-s1"><span class="pl-pds">"</span>type<span class="pl-pds">"</span></span> <span class="pl-e">ng-model</span>=<span class="pl-s1"><span class="pl-pds">"</span>typeValue<span class="pl-pds">"</span></span>&gt;&lt;/<span class="pl-ent">selector</span>&gt;</pre></div>
 
+<selector position="5" color="blue" ng-model="type" label="type"></selector>
+
 <p>to use switch component:</p>
 
 <div class="highlight highlight-html"><pre>&lt;<span class="pl-ent">switch</span> <span class="pl-e">id</span>=<span class="pl-s1"><span class="pl-pds">"</span>three<span class="pl-pds">"</span></span> <span class="pl-e">ng-model</span>=<span class="pl-s1"><span class="pl-pds">"</span>switchStatus<span class="pl-pds">"</span></span>&gt;&lt;/<span class="pl-ent">switch</span>&gt;</pre></div>
+
+<switch id="switcher" ng-model="switchStatus"></switch>
 
 <p>You can add nc-click attribute to switch component and read switch status on function body; for example:</p>
 
