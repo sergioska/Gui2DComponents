@@ -33,23 +33,19 @@
           <li><a href="https://github.com/sergioska/Gui2DComponents">View On <strong>GitHub</strong></a></li>
         </ul>
 
-        <div style="height:auto;">
-        <div style="float:left;">
+        <p class="view"><strong>Demo</strong>  <small>(hold on mouse down and move up)</small></p>
+        <div style="float:left; margin-left: 8px;">
             <rotative min="0" max="100" step="1" ng-model="gain" label="gain" color="orange"></rotative>
             <rotative min="0" max="1" step="0.01" ng-model="hi" label="hi" color="red"></rotative>
-            <rotative min="0" max="1000" step="10" ng-model="low" label="low" color="green"></rotative>
         </div>
 
-        <div style="float:left; margin-left: 60px;">
+        <div style="float:left; margin-left: 50px;">
             <selector position="5" color="blue" ng-model="type" label="type"></selector>
-            <selector position="10" color="pink" ng-model="subtype" label="sub"></selector>
-            <selector position="2" color="grey" ng-model="another" label="another"></selector>
+            <selector position="10" color="green" ng-model="subtype" label="sub"></selector>
         </div>
-
-        <div style="clear:both;"></div>
-      </div>
 
       </header>
+
       <section>
         <h1>
 <a id="gui2dcomponents" class="anchor" href="#gui2dcomponents" aria-hidden="true"><span class="octicon octicon-link"></span></a>Gui2DComponents</h1>
@@ -116,11 +112,15 @@ grunt client</pre></div>
            $scope.synth.playNote();
         <span class="pl-k">else</span> $scope.<span class="pl-s3">stop</span>();
     };</pre></div>
+
+
       </section>
+
       <footer>
         <p>This project is maintained by <a href="https://github.com/sergioska">sergioska</a></p>
         <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></small></p>
       </footer>
+
     </div>
     <script src="javascripts/scale.fix.js"></script>
     
