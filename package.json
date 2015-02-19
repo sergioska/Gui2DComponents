@@ -1,0 +1,40 @@
+{
+	"name": "Gui2DComponents",
+	"version": "0.0.0",
+	"description": "alternative angular components for gui panel",
+	"main": "index.html",
+	"engines": {
+		"node": "0.10.x"
+	},
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/sergioska/Gui2DComponents.git"
+	},
+	"devDependencies": {
+		"angular-mocks": "^1.3.13",
+		"chai": "~1.10.0",
+		"grunt": "^0.4.5",
+		"grunt-cli": ">=0.1.13",
+		"grunt-contrib-concat": "^0.5.0",
+		"grunt-contrib-copy": "^0.7.0",
+		"grunt-contrib-jshint": "~0.10.0",
+		"grunt-contrib-uglify": "~0.5.0",
+		"grunt-contrib-watch": "~0.6.1",
+		"grunt-karma": "latest",
+		"karma": "~0.12.8",
+		"karma-chai": "^0.1.0",
+		"karma-chrome-launcher": "~0.1.2",
+		"karma-firefox-launcher": "~0.1.3",
+		"karma-ie-launcher": "~0.1",
+		"karma-jasmine": "~0.1.5",
+		"karma-mocha": "^0.1.4",
+		"karma-ng-html2js-preprocessor": "^0.1.2",
+		"karma-phantomjs-launcher": "~0.1.2",
+		"karma-sauce-launcher": "~0.1.8",
+		"karma-script-launcher": "~0.1.0",
+		"karma-story-reporter": "~0.2.2",
+		"mocha": "~2.0.1"
+	},
+	"author": "Sergio Sicari",
+	"license": "BSD-2-Clause"
+}

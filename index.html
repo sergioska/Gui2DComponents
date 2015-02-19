@@ -35,10 +35,14 @@
 
         <div style="float:left;">
             <rotative min="0" max="100" step="1" ng-model="gain" label="gain" color="orange"></rotative>
+            <rotative min="0" max="1" step="0.01" ng-model="hi" label="hi" color="red"></rotative>
+            <rotative min="0" max="1000" step="10" ng-model="low" label="low" color="green"></rotative>
         </div>
 
-        <div style="float:left;">
+        <div style="float:left; margin-left: 60px;">
             <selector position="5" color="blue" ng-model="type" label="type"></selector>
+            <selector position="10" color="pink" ng-model="subtype" label="sub"></selector>
+            <selector position="2" color="grey" ng-model="another" label="another"></selector>
         </div>
 
       </header>
