@@ -3,7 +3,7 @@ Alternative angularjs components for GUI
 
 > An alternative collection of reusable UI components for [AngularJS](https://angularjs.org/)
 
-Live demo coming soon ...
+Live demo and documentation on http://sergioska.github.io/Gui2DComponents/
 
 ## Quick start
 
@@ -19,6 +19,11 @@ cd Gui2DComponents
 bower install
 npm install
 grunt client
+```
+
+# Test
+``` sh
+grunt test
 ```
 
 Include the required bower component:
