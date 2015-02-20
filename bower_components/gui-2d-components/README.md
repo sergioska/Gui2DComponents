@@ -3,7 +3,7 @@ Alternative angularjs components for GUI
 
 > An alternative collection of reusable UI components for [AngularJS](https://angularjs.org/)
 
-Live demo coming soon ...
+Live demo and documentation on http://sergioska.github.io/Gui2DComponents/
 
 ## Quick start
 
@@ -21,6 +21,13 @@ npm install
 grunt client
 ```
 
+# Test
+``` sh
+grunt test
+```
+
+# Using
+
 Include the required bower component:
 ``` html
 <link rel="stylesheet" href="bower_components/gui-2d-components/src/css/gui-2d-components.css"/>
@@ -31,8 +38,6 @@ Inject the `Gui2DComponents` module into your app:
 ``` JavaScript
 angular.module('myApp', ['Gui2DComponents.js']);
 ```
-
-# Using
 
 to use rotative component:
 

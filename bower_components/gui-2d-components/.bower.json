@@ -34,11 +34,11 @@
     "angular-mocks": "~1.3.13"
   },
   "homepage": "https://github.com/sergioska/Gui2DComponents",
-  "_release": "1610d7bd5d",
+  "_release": "a56a92cc73",
   "_resolution": {
     "type": "branch",
     "branch": "master",
-    "commit": "1610d7bd5d015a392b8e3ec76c22fdf188f18970"
+    "commit": "a56a92cc731ea0dc3de57fa59d9c301c5e74ee27"
   },
   "_source": "git://github.com/sergioska/Gui2DComponents.git",
   "_target": "*",
