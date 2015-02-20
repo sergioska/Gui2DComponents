@@ -7,14 +7,13 @@ Gui2DComponents.controller('RotativeController', function($scope, $element) {
 	pie.css('background-color', $scope.color);
 	pie.css('border-color', $scope.color);
 	$scope.y = 94;
-	$scope.out = 94;
 
 	$scope.init = function() {
-		//console.log("Y: " + y);
+
 		var color = 'white';
 		var startPoint = 94;
 		if(!$scope.ngModel)
-			ngModel = 0;
+			$scope.ngModel = 0;
 
 		var realStep = ((360 * $scope.step) / $scope.max);
 		$scope.y = 94 + realStep * $scope.ngModel;
@@ -26,9 +25,6 @@ Gui2DComponents.controller('RotativeController', function($scope, $element) {
 			startPoint = $scope.y;
 			color = 'white';
 		}
-		//startPoint = 237; // put relative deg value about 40 (ngModel)
-		//$scope.y = startPoint;
-		$scope.output = $scope.ngModel;
 		
 		pie.css('background-image','linear-gradient('+startPoint+'deg, transparent 50%, '+color+' 50%),linear-gradient(90deg, white 50%, transparent 50%');
 	};
@@ -65,16 +61,18 @@ Gui2DComponents.directive('rotative', ['$document', function($document){
 				if(typeof(prevY)==="undefined")prevY=0;
 				// mouse goes down
 				if (event.pageY < prevY) {
-					scope.y=scope.y+realStep;
+					scope.y = scope.y + realStep;
+					output = output + parseFloat(scope.step);
 					scope.ngModel = scope.ngModel + parseFloat(scope.step);
 				// mouse goes up
 				} else {
-					scope.y=scope.y-realStep;
+					scope.y = scope.y - realStep;
+					output = output - parseFloat(scope.step);
 					scope.ngModel = scope.ngModel - parseFloat(scope.step);
 				}
 
 				// check min value
-				if (scope.y < 94) {scope.y = 94; scope.ngModel = parseInt(scope.min);}
+				if (scope.y < 94) {scope.y = 94; output = parseInt(scope.min); scope.ngModel = parseInt(scope.min);}
 
 				element.attr('data-prevY', event.pageY);
 				var pie = element.find('pie');
@@ -88,12 +86,10 @@ Gui2DComponents.directive('rotative', ['$document', function($document){
 				}
 
 				// check max value (starting from 90deg the end is (360+90)deg then sub 5 to have a margin)
-				if (scope.y > 448) {scope.y = 448; scope.ngModel = parseInt(scope.max);}
+				if (scope.y > 448) {scope.y = 448; output = parseInt(scope.max); scope.ngModel = parseInt(scope.max);}
 
-				scope.out = scope.ngModel;
-				if(!ngModel){
-                	return;
-            	}
+				scope.out = output;
+				
             	scope.ngModel = Math.round(scope.ngModel*100)/100;
 				ngModel.$setViewValue(scope.ngModel);
 

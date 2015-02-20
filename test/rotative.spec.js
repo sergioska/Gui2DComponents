@@ -17,7 +17,7 @@ describe('Gui2DComponents: rotative', function() {
 		var  html, element, controller, doc;
 		beforeEach(inject(function($controller, $document) {
 			doc = $document;
-			html = angular.element('<rotative id="uno" min="{{min}}" max="{{max}}" step="{{step}}" label="{{lable}}" color="{{color}}"></rotative>');
+			html = angular.element('<rotative id="uno" min="{{min}}" max="{{max}}" step="{{step}}" label="{{lable}}" color="{{color}}" ng-model="ngModel"></rotative>');
 			element = $compile(html)(scope);
 			controller = $controller('RotativeController', {$scope: scope, $element: element});
 
@@ -26,7 +26,6 @@ describe('Gui2DComponents: rotative', function() {
 			scope.step = 1;
 			scope.color = "blue";
 			scope.label = "type";
-
 		}));
 
 		it("should be init state", function() {
@@ -53,9 +52,9 @@ describe('Gui2DComponents: rotative', function() {
 					pageY: y
 				});
 				doc.triggerHandler('mouseup');
-				return ele.out;
+				//return ele.out;
 			};
-			console.log("ELE: " + ele.ngModel);
+			console.log("ELE: " + ele.out);
 			// mouse move up
 			action(300);
 			console.log("OUT: " + ele.out);
