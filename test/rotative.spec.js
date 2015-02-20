@@ -45,7 +45,6 @@ describe('Gui2DComponents: rotative', function() {
 			console.log("testing mouse action on rotative ...");
 			scope.$digest();
 			var ele = element.isolateScope();
-
 			var action = function(y) {
 				element.triggerHandler('mousedown');
 				doc.triggerHandler({
@@ -56,7 +55,7 @@ describe('Gui2DComponents: rotative', function() {
 				doc.triggerHandler('mouseup');
 				return ele.out;
 			};
-
+			console.log("ELE: " + ele.ngModel);
 			// mouse move up
 			action(300);
 			console.log("OUT: " + ele.out);

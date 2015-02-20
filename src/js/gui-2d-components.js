@@ -6,6 +6,32 @@ Gui2DComponents.controller('RotativeController', function($scope, $element) {
 	content.css('color', $scope.color);
 	pie.css('background-color', $scope.color);
 	pie.css('border-color', $scope.color);
+	$scope.y = 94;
+	$scope.out = 94;
+
+	$scope.init = function() {
+		//console.log("Y: " + y);
+		var color = 'white';
+		var startPoint = 94;
+		if(!$scope.ngModel)
+			ngModel = 0;
+
+		var realStep = ((360 * $scope.step) / $scope.max);
+		$scope.y = 94 + realStep * $scope.ngModel;
+		console.log($scope.y);
+		if ($scope.y > 270) {
+			startPoint = $scope.y - 270 + 86;
+			color = $scope.color;
+		} else {
+			startPoint = $scope.y;
+			color = 'white';
+		}
+		//startPoint = 237; // put relative deg value about 40 (ngModel)
+		//$scope.y = startPoint;
+		$scope.output = $scope.ngModel;
+		
+		pie.css('background-image','linear-gradient('+startPoint+'deg, transparent 50%, '+color+' 50%),linear-gradient(90deg, white 50%, transparent 50%');
+	};
 });
 
 Gui2DComponents.directive('rotative', ['$document', function($document){
@@ -14,13 +40,12 @@ Gui2DComponents.directive('rotative', ['$document', function($document){
 		restrict: 'E',
 		replace: true,
 		templateUrl: "bower_components/gui-2d-components/src/js/templates/rotative.html",
-		scope: {color: "@", min: "@", max: "@", step: "@", label: "@", ngModel: "=", out: "@"},
+		scope: {color: "@", min: "@", max: "@", step: "@", ngModel: "=", label: "@", out: "@"},
 		controller: 'RotativeController',
 		link: function(scope, element, attr, ngModel) {
+
 			scope.out = 94;
-			var x = 0, y = 90, yReal = 0, color = 'white';
-			var min = scope.min;
-			var max = scope.max;
+			var yReal = 0, color = 'white';
 			var step = scope.step, realStep = 0, output = 0;
 
 			function bindElementMove() {
@@ -38,39 +63,39 @@ Gui2DComponents.directive('rotative', ['$document', function($document){
 				var realStep = ((360*scope.step)/scope.max);
 				var prevY = element.attr('data-prevY');
 				if(typeof(prevY)==="undefined")prevY=0;
-
 				// mouse goes down
 				if (event.pageY < prevY) {
-					y=y+realStep;
-					output = output + parseFloat(scope.step);
+					scope.y=scope.y+realStep;
+					scope.ngModel = scope.ngModel + parseFloat(scope.step);
 				// mouse goes up
 				} else {
-					y=y-realStep;
-					output = output - parseFloat(scope.step);
+					scope.y=scope.y-realStep;
+					scope.ngModel = scope.ngModel - parseFloat(scope.step);
 				}
 
 				// check min value
-				if (y < 94) {y = 94; output = parseInt(scope.min);}
+				if (scope.y < 94) {scope.y = 94; scope.ngModel = parseInt(scope.min);}
 
 				element.attr('data-prevY', event.pageY);
 				var pie = element.find('pie');
-				if (y > 270) {
-					yReal = y - 270 + 86;
+				
+				if (scope.y > 270) {
+					yReal = scope.y - 270 + 86;
 					color = scope.color;
 				} else {
-					yReal = y;
+					yReal = scope.y;
 					color = 'white';
 				}
 
 				// check max value (starting from 90deg the end is (360+90)deg then sub 5 to have a margin)
-				if (y > 448) {y = 448; output = parseInt(scope.max);}
+				if (scope.y > 448) {scope.y = 448; scope.ngModel = parseInt(scope.max);}
 
-				scope.out = output;
+				scope.out = scope.ngModel;
 				if(!ngModel){
                 	return;
             	}
-            	output = Math.round(output*100)/100;
-				ngModel.$setViewValue(output);
+            	scope.ngModel = Math.round(scope.ngModel*100)/100;
+				ngModel.$setViewValue(scope.ngModel);
 
 				pie.css('background-image','linear-gradient('+yReal+'deg, transparent 50%, '+color+' 50%),linear-gradient(90deg, white 50%, transparent 50%');
 			}
