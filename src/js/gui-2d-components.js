@@ -16,7 +16,7 @@ Gui2DComponents.controller('RotativeController', function($scope, $element) {
 			$scope.ngModel = 0;
 
 		var realStep = ((360 * $scope.step) / $scope.max);
-		$scope.y = 94 + realStep * $scope.ngModel;
+		$scope.y = 94 + (realStep/$scope.step) * $scope.ngModel;
 		console.log($scope.y);
 		if ($scope.y > 270) {
 			startPoint = $scope.y - 270 + 86;
